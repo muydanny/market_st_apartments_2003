@@ -6,23 +6,23 @@ class Building
 
   def initialize
     @units = []
-    @renters = []
+    @renters = find_all_renters
     @rented_units = []
   end
 
   def add_unit(building_unit)
     @units << building_unit
+    # require "pry"; binding.pry
   end
 
-  def add_renter(tenant)
-    @renters << tenant
+  def find_all_renters
+    #iterate over units. Put unit.renter into
+    #new array. Could use map
+    
   end
 
-  def average_rent(rent)
-    @units.select do |unit|
-      unit.rent == rent
-    end
-    @monthly_rent.to_f / 2
+  def average_rent
+    @units.sum(&:monthly_rent) / 2.0
   end
 
 end
