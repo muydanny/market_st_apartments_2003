@@ -1,3 +1,5 @@
+require './lib/apartment'
+
 class Building
   attr_reader :units,
               :renters,
@@ -6,7 +8,7 @@ class Building
 
   def initialize
     @units = []
-    @renters = find_all_renters
+    @renters = []
     @rented_units = []
   end
 
@@ -15,11 +17,17 @@ class Building
     # require "pry"; binding.pry
   end
 
-  def find_all_renters
-    #iterate over units. Put unit.renter into
-    #new array. Could use map
-    
+  def renters
+    units.map do |unit|
+      @renters << unit.renter
+      require "pry"; binding.pry  # @renters << @renter
+    end
+    @renters
   end
+  #nested interation
+  #iterate over units. Put unit.renter into
+  #new array. Could use map
+
 
   def average_rent
     @units.sum(&:monthly_rent) / 2.0
